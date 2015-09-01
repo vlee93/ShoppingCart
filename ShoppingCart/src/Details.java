@@ -1,5 +1,3 @@
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import customTools.DBProduct;
@@ -11,17 +9,19 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/ProdList")
-public class ProdList extends HttpServlet {
+@WebServlet("/details")
+public class Details extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public ProdList() {
+    public Details() {
         super();
 
     }
@@ -33,31 +33,27 @@ public class ProdList extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String message = "";
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		try{
-			List<Product> products = DBProduct.getProducts();
-			message += "<div class=\"container\">";
-			message += "<table class=\"table table-bordered\"><thead><tr><th>Product Name</th></tr></thead><tbody>";
-			for (Product prod : products)
-			{
-				message += "<tr>";
-				message += "<td>"
-						+ "<img src="+ prod.getPicture() + " class=\"img-rounded\" alt=\"Cinque Terre\" width=\"304\" height=\"236\"><br>"
-						+ prod.getProdname() + "<br><a href=\"details?ProdID=" + prod.getProdid() + "\">" + "<button type=\"button\" class=\"btn btn-info\">Description</button>" + "</a>" + "</td>";
-				message += "</tr>";
-			}
-			message += "</tbody></table>";
-			message += "</div>";
-			
+		String prodIDstr = request.getParameter("ProdID");
+		long prodID = Long.parseLong(prodIDstr);
+		HttpSession session = request.getSession();
+		session.setAttribute("prodId", prodIDstr);
+		
+		String message = "";
+		try
+		{
+			Product prod = DBProduct.getDetails(prodID);
+			message += "<div class=\"container\"><div class=\"jumbotron\"><h1>" + prod.getProdname() + "</h1><br>"
+					+ "<img src=" + prod.getPicture() + " class=\"img-rounded\" alt=\"Cinque Terre\" width=\"608\" height=\"472\"><br><h4> Description: </h4>" + prod.getDescription() + "</div>";
+			message += "<div class=\"alert alert-success col-sm-3 col-sm-offset-9\"><strong>Price:</strong> $"+ prod.getPrice() + "</div>";
+
 			request.setAttribute("message", message);
-			getServletContext().getRequestDispatcher("/OurProducts.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/proddetail.jsp").forward(request, response);
 		}catch (Exception e){
 			e.printStackTrace();
 		} finally {
 			em.close();
 		}
-		
 	}
 
 }

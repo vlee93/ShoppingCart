@@ -20,7 +20,7 @@ public class Product implements Serializable {
 
 	private String picture;
 
-	private BigDecimal price;
+	private double price;
 
 	private String prodname;
 
@@ -55,11 +55,11 @@ public class Product implements Serializable {
 		this.picture = picture;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

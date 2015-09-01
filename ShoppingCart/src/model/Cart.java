@@ -18,7 +18,7 @@ public class Cart implements Serializable {
 	@Id
 	private long orderid;
 
-	private BigDecimal qty;
+	private long qty;
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
@@ -36,12 +36,12 @@ public class Cart implements Serializable {
 		this.orderid = orderid;
 	}
 
-	public BigDecimal getQty() {
+	public long getQty() {
 		return this.qty;
 	}
 
-	public void setQty(BigDecimal qty) {
-		this.qty = qty;
+	public void setQty(long qTY2) {
+		this.qty = qTY2;
 	}
 
 	public Product getProduct() {

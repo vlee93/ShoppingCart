@@ -21,17 +21,18 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="OurProducts.jsp">ShopMe</a>
+      <a class="navbar-brand" href="ProdList">ShopMe</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="OurProducts.jsp">Our Products
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        <li class="active"><a href="ProdList">Our Products
+        <li><a href="ShopCart">My Cart</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+${message}
 
 </body>
 </html>

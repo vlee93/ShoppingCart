@@ -29,4 +29,11 @@ public class DBProduct {
 		} return products;
 	}
 	
+	public static Product getDetails (long prodID)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		Product details  = em.find(Product.class, prodID);
+		return details;
+	}
+	
 }
