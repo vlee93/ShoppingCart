@@ -1,10 +1,9 @@
-<%@ taglib prefix = "c" uri= "http://java.sun.com/jsp/jstl/core"  %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Deleted Item</title>
+<title>Enter Review</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -15,7 +14,13 @@
 
 <jsp:include page="./header.jsp"/>
 
-<h3> Item has been deleted! </h3>
+<h3> Enter a Review:</h3>	
+	<form role="form" action="Review" method="post">
+	<input type="text" class="form-control" name="review" rows="4" cols="50"><br>
+	<label> Rating (1-5 stars): </label>
+	<input  type="text" name="Rating"><br>
+	<input type="submit" value="Enter" id="submit">
+	</form>
 
 </body>
 </html>

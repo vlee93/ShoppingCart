@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table (name= "CART", schema = "TESTDB")
+@Table(name= "CART", schema= "TESTDB")
 @NamedQuery(name="Cart.findAll", query="SELECT c FROM Cart c")
 public class Cart implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +24,11 @@ public class Cart implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="PRODID")
 	private Product product;
+
+	//bi-directional many-to-one association to Shopuser
+	@ManyToOne
+	@JoinColumn(name="USERID")
+	private Shopuser shopuser;
 
 	public Cart() {
 	}
@@ -40,8 +45,8 @@ public class Cart implements Serializable {
 		return this.qty;
 	}
 
-	public void setQty(long qTY2) {
-		this.qty = qTY2;
+	public void setQty(long qty) {
+		this.qty = qty;
 	}
 
 	public Product getProduct() {
@@ -50,6 +55,14 @@ public class Cart implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Shopuser getShopuser() {
+		return this.shopuser;
+	}
+
+	public void setShopuser(Shopuser shopuser) {
+		this.shopuser = shopuser;
 	}
 
 }

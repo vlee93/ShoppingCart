@@ -14,13 +14,39 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Our Products</title>
+<title>Login</title>
 </head>
 <body>
 
 <jsp:include page="./header.jsp"/>
 
-${message}
+<div class="jumbotron" align = "center">
+  <h1> Welcome to ShopMe</h1>      
+  <p>ShopMe is the one-stop shop for everyone's back-to-school shopping list.</p>
+  <p> Please login or create an account in order to make a purchase.</p>
+</div>
+
+
+<%@ taglib prefix = "c" uri= "http://java.sun.com/jsp/jstl/core"%>
+
+<c:if test="${not empty error}">
+	<p> ${error} </p>
+</c:if>
+
+<c:if test="${not empty loggedout}">
+	<p> ${loggedout} </p>
+</c:if>
+
+<div align="center">
+<form action="Login" method="post">
+<label >Username: </label>
+<input  type="text" name="username" ><br>
+<label >Password: </label>
+<input  type="password" name="password" ><br>
+<input type="submit" value="Login" id="submit"><br>
+<a href="CreateAccount.jsp" class="btn btn-info" role="button">Create Account</a>
+</form>
+</div>
 
 </body>
 </html>

@@ -6,7 +6,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-
+/**
+ * The persistent class for the PRODUCT database table.
+ * 
+ */
 @Entity
 @Table(name = "PRODUCT", schema = "TESTDB")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
@@ -20,13 +23,17 @@ public class Product implements Serializable {
 
 	private String picture;
 
-	private double price;
+	private long price;
 
 	private String prodname;
 
 	//bi-directional many-to-one association to Cart
 	@OneToMany(mappedBy="product")
 	private List<Cart> carts;
+
+	//bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy="product")
+	private List<Comment> comments;
 
 	public Product() {
 	}
@@ -55,11 +62,11 @@ public class Product implements Serializable {
 		this.picture = picture;
 	}
 
-	public double getPrice() {
+	public long getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 
@@ -91,6 +98,28 @@ public class Product implements Serializable {
 		cart.setProduct(null);
 
 		return cart;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setProduct(this);
+
+		return comment;
+	}
+
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setProduct(null);
+
+		return comment;
 	}
 
 }

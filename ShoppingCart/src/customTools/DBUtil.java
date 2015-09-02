@@ -9,6 +9,7 @@ public class DBUtil {
 			.createEntityManagerFactory("ShoppingCart");
 
 	public static EntityManagerFactory getEmFactory() {
+		emf.getCache().evictAll();
 		return emf;
 	}
 }

@@ -12,19 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="ProdList">ShopMe</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li><a href="ProdList">Our Products
-        <li class = "active"><a href="ShopCart">My Cart</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<jsp:include page="./header.jsp"/>
 
 ${message}
 

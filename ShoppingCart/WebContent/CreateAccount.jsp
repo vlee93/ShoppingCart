@@ -14,13 +14,28 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Our Products</title>
+<title>Create an Account!</title>
 </head>
 <body>
 
-<jsp:include page="./header.jsp"/>
+<div class="jumbotron" align = "center">
+  <h2> Create a new account</h2>      
+  <p>You're almost there!</p>
+</div>
 
-${message}
+<div align="center">
+<form action="NewAccount" method="post">
+<label >Name: </label>
+<input  type="text" name="name" ><br>
+<label >Email: </label>
+<input  type="text" name="email" ><br>
+<label >Username: </label>
+<input  type="text" name="username" ><br>
+<label >Password: </label>
+<input  type="password" name="userpass" ><br>
+<input type="submit" value="Join" id="submit">
+</form>
+</div>
 
 </body>
 </html>

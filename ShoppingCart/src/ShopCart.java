@@ -9,6 +9,7 @@ import model.Cart;
 import customTools.DBCart;
 
 import java.io.IOException;
+import model.Shopuser;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,11 @@ public class ShopCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		List<Cart> shopcart = DBCart.viewCart();
+		HttpSession session = request.getSession();
+		Shopuser me = (Shopuser) session.getAttribute("user");
+		List<Cart> shopcart = DBCart.viewMYCart(me);
+		System.out.println("CART: " + shopcart);
+		
 		String message = "";
 		double total = 0;
 		try{
@@ -59,7 +64,7 @@ public class ShopCart extends HttpServlet {
 			message += "</tbody></table>";
 			message += "</div>";
 		}catch (Exception e){
-			e.printStackTrace();;
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
@@ -76,12 +81,14 @@ public class ShopCart extends HttpServlet {
 		HttpSession session = request.getSession();
 		String prodIDstr = (String) session.getAttribute("prodId");
 		long prodID = Long.parseLong(prodIDstr);
+		Shopuser user = (Shopuser) session.getAttribute("user");
 
 		try{
 			Cart mycart = new Cart();
 			mycart.setQty(QTY);
 			Product myprod = DBProduct.getDetails(prodID);
 			mycart.setProduct(myprod);
+			mycart.setShopuser(user);
 			DBCart.addToCart(mycart);
 
 		}catch (Exception e){

@@ -6,6 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import model.Shopuser;
 import model.Cart;
 import model.Product;
 
@@ -48,14 +49,14 @@ public class DBCart {
 		}
 	}
 	
-	public static List<Cart> viewCart (){
+	public static List<Cart> viewALLCart (){
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String qString = "select c from Cart c";
 		
-		List<Cart> posts = null;
+		List<Cart> orders = null;
 		try{
 			Query query = em.createQuery(qString);
-			posts = query.getResultList();
+			orders = query.getResultList();
 
 		}catch (Exception e){
 			e.printStackTrace();
@@ -63,7 +64,27 @@ public class DBCart {
 		finally{
 				em.close();
 			}
-		return posts;
+		return orders;
+	}
+	
+	public static List<Cart> viewMYCart (Shopuser user){
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "select c from Cart c where c.shopuser.userid = :userid";
+		
+		List<Cart> orders = null;
+		try{
+			Query query = em.createQuery(qString);
+			query.setParameter("userid", user.getUserid());
+			orders = query.getResultList();
+			System.out.println("Orders =" + orders);
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		finally{
+				em.close();
+			}
+		return orders;
 	}
 	
 }
