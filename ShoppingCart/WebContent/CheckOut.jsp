@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Shopping Cart</title>
+<title>Check Out</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -15,10 +15,9 @@
 <jsp:include page="./header.jsp"/>
 
 ${message}
-
+Subtotal: ${subtotal}
+Tax: ${tax}
 Total: ${total}
-
-<a href="Confirmation" class="btn btn-info" role="button">Check Out</a>
 
 </body>
 </html>
