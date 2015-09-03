@@ -30,14 +30,15 @@ public class Review extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		HttpSession session = request.getSession();
-		String prodidstr = (String) session.getAttribute("prodId");
-		long prodid = Long.parseLong(prodidstr);
-		Product myprod = DBProduct.getDetails(prodid);
-		List<Comment> comments= DBReview.getComments(myprod);
-		request.setAttribute("comments", comments);
-		getServletContext().getRequestDispatcher("/details").forward(request, response);
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		HttpSession session = request.getSession();
+//		String prodidstr = (String) session.getAttribute("prodId");
+//		long prodid = Long.parseLong(prodidstr);
+//		Product myprod = DBProduct.getDetails(prodid);
+//		List<Comment> comments= DBReview.getComments(myprod);
+//		request.setAttribute("comments", comments);
+//		getServletContext().getRequestDispatcher("/details").forward(request, response);
+		doPost(request, response);
 	}
 
 

@@ -49,7 +49,7 @@ public class Confirmation extends HttpServlet {
 		double total = 0;
 		try{
 			message += "<div class=\"container\">";
-			message += "<table class=\"table table-bordered\"><thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Remove?</th></tr></thead><tbody>";
+			message += "<table class=\"table table-bordered\"><thead><tr><th>Product</th><th>Price</th><th>Quantity</th></tr></thead><tbody>";
 			for (Cart cart : shopcart)
 			{
 				message += "<tr>";
@@ -57,13 +57,10 @@ public class Confirmation extends HttpServlet {
 				message += cart.getProduct().getProdname();
 				message += "</td>";
 				message += "<td>";
-				message += cart.getProduct().getPrice();
+				message += "$" + cart.getProduct().getPrice();
 				message += "</td>";
 				message += "<td>";
 				message += cart.getQty();
-				message += "</td>";
-				message += "<td>";
-				message += "<a href=\"removeItem?OrdID=" + cart.getOrderid() + "\">" +"<button type=\"button\" class=\"btn btn-info\">Remove</button>" + "</a>";
 				message += "</td>";
 				message += "</tr>";
 				subtotal += (cart.getQty()*cart.getProduct().getPrice());

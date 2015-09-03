@@ -51,15 +51,14 @@ ${message}
     </thead>
     <tbody>
 
-<%@ taglib prefix = "c" uri= "http://java.sun.com/jsp/jstl/core"%>
-<c: forEach var="comm" items="${comments}">
+<c:forEach var="comm" items="${comments}">
 <tr>
 <td><c:out value="${comm.shopuser.username}"/></td>
 <td><c:out value="${comm.itemcomment}"/></td>
 <td><c:out value="${comm.rating}"/></td>
 <td><c:out value="${comm.commentdate}"/></td>
 </tr>
-</c: forEach>
+</c:forEach>
     </tbody>
   </table>
 </div>

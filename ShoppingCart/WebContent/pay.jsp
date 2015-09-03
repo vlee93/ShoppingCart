@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Check Out</title>
+<title>Pay</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,12 +14,16 @@
 
 <jsp:include page="./header.jsp"/>
 
-${message}
-Subtotal: ${subtotal}
-Tax: ${tax}
-<h4>Total: $ ${total}</h4>
-
-<a href="pay.jsp" class="btn btn-success" role="button">Pay</a>
+<h3> Please enter the following information: </h3>
+<form action="Payment" method="post">
+<label> Shipping Address: </label>
+<input  type="text" name="shipping" ><br>
+<label> Billing Address: </label>
+<input  type="text" name="billing" ><br>
+<label> Credit Card Number: </label>
+<input  type="text" name="creditcard" ><br>
+<input type="submit" value="Purchase" id="submit"><br>
+</form>
 
 </body>
 </html>
