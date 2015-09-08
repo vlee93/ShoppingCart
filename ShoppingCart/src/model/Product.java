@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -11,7 +10,6 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name = "PRODUCT", schema = "TESTDB")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +21,7 @@ public class Product implements Serializable {
 
 	private String picture;
 
-	private long price;
+	private double price;
 
 	private String prodname;
 
@@ -62,11 +60,11 @@ public class Product implements Serializable {
 		this.picture = picture;
 	}
 
-	public long getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

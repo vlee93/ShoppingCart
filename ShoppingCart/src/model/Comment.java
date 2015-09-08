@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -11,7 +10,7 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="COMMENTS", schema = "TESTDB")
+@Table(name="COMMENTS")
 @NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -67,8 +66,8 @@ public class Comment implements Serializable {
 		return this.rating;
 	}
 
-	public void setRating(long rating) {
-		this.rating = rating;
+	public void setRating(long rating2) {
+		this.rating = rating2;
 	}
 
 	public Product getProduct() {

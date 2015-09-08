@@ -78,6 +78,7 @@ public class Confirmation extends HttpServlet {
 		request.setAttribute("subtotal", subtotal);
 		request.setAttribute("tax", tax);
 		request.setAttribute("total", total);
+		session.setAttribute("total", total);
 		getServletContext().getRequestDispatcher("/CheckOut.jsp").forward(request, response);
 	}
 

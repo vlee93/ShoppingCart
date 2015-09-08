@@ -10,13 +10,15 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="SHOPUSERS", schema = "TESTDB")
+@Table(name="SHOPUSERS")
 @NamedQuery(name="Shopuser.findAll", query="SELECT s FROM Shopuser s")
 public class Shopuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private long userid;
+
+	private double credit;
 
 	private String email;
 
@@ -36,6 +38,10 @@ public class Shopuser implements Serializable {
 	@OneToMany(mappedBy="shopuser")
 	private List<Comment> comments;
 
+	//bi-directional many-to-one association to Payment
+	@OneToMany(mappedBy="shopuser")
+	private List<Payment> payments;
+
 	public Shopuser() {
 	}
 
@@ -45,6 +51,14 @@ public class Shopuser implements Serializable {
 
 	public void setUserid(long userid) {
 		this.userid = userid;
+	}
+
+	public double getCredit() {
+		return this.credit;
+	}
+
+	public void setCredit(double credit) {
+		this.credit = credit;
 	}
 
 	public String getEmail() {
@@ -129,6 +143,28 @@ public class Shopuser implements Serializable {
 		comment.setShopuser(null);
 
 		return comment;
+	}
+
+	public List<Payment> getPayments() {
+		return this.payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
+	}
+
+	public Payment addPayment(Payment payment) {
+		getPayments().add(payment);
+		payment.setShopuser(this);
+
+		return payment;
+	}
+
+	public Payment removePayment(Payment payment) {
+		getPayments().remove(payment);
+		payment.setShopuser(null);
+
+		return payment;
 	}
 
 }

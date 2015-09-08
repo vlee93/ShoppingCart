@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
@@ -10,7 +9,6 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table(name= "CART", schema= "TESTDB")
 @NamedQuery(name="Cart.findAll", query="SELECT c FROM Cart c")
 public class Cart implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +16,7 @@ public class Cart implements Serializable {
 	@Id
 	private long orderid;
 
+	@Column(updatable=false)
 	private long qty;
 
 	//bi-directional many-to-one association to Product
@@ -45,8 +44,8 @@ public class Cart implements Serializable {
 		return this.qty;
 	}
 
-	public void setQty(long qty) {
-		this.qty = qty;
+	public void setQty(long qTY2) {
+		this.qty = qTY2;
 	}
 
 	public Product getProduct() {

@@ -6,6 +6,7 @@
 		<class>model.Comment</class>
 		<class>model.Product</class>
 		<class>model.Shopuser</class>
+		<class>model.Payment</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
